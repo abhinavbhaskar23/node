@@ -17,7 +17,9 @@ import { LogoutComponent } from './logout/logout.component';
 import { AccountComponent } from './account/account.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-
+import { HeaderComponent } from './header/header.component';
+import { NewuserComponent } from './newuser/newuser.component';
+import { ReactiveFormsModule } from '@angular/forms';
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -32,11 +34,15 @@ export function tokenGetter() {
     LogoutComponent,
     AccountComponent,
     AdminComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HeaderComponent,
+    NewuserComponent
   ],
   imports: [
     RoutingModule,
     SharedModule,
+    ReactiveFormsModule,
+    
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

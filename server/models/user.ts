@@ -10,17 +10,17 @@ const userSchema = new mongoose.Schema({
 
 // Before saving the user, hash the password
 userSchema.pre('save', function(next) {
-  const user = this.schema.obj;
-  if (!user.isModified('password')) { return next(); }
-  bcrypt.genSalt(10, function(err, salt) {
-    if (err) { return next(err); }
-      bcrypt.hash(user.password, salt, function(error, hash) {
-      if (error) { return next(error); }
-       user.password = hash;
-      next();
-    });
-  });
-
+  // const user = this;
+  // if (!user.isModified('password')) { return next(); }
+  // bcrypt.genSalt(10, function(err, salt) {
+  //   if (err) { return next(err); }
+  //     bcrypt.hash(user.toObject().password, salt, function(error, hash) {
+  //     if (error) { return next(error); }
+  //     user.toObject().password= hash;
+  //     next();
+  //   });
+  // });
+  next();
 
 });
 
