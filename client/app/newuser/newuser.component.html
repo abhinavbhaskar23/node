@@ -1,101 +1,128 @@
 <br />
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="card">
             <div class="card-header text-white bg-success">
                 New User
             </div>
 
             <div class="card-body ">
-                <form>
+                <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label for="firstname">First Name</label>
-                            <input type="email" class="form-control" id="firstname" placeholder="Email">
+                            <label for="firstname">First Name<mark>*</mark></label>
+                            <input type="test" formControlName="firstName" class="form-control" id="firstname"
+                                placeholder="Fist Name">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="middlename">Middle Name</label>
-                            <input type="password" class="form-control" id="middlename" placeholder="Password">
+                            <input type="test" formControlName="middlename" class="form-control" id="middlename"
+                                placeholder="Middle Name">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="lastname">Last Name</label>
-                            <input type="password" class="form-control" id="lastname" placeholder="Password">
+                            <input type="text" formControlName="lastname" class="form-control" id="lastname"
+                                placeholder="Last Name">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                            <label for="emailid">Email</label>
+                <input type="email" formControlName="emailid" class="form-control" id="emailid" placeholder="Email">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputPassword4">Password</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                            <label for="Password">Password</label>
+                            <input type="password" formControlName="Password" class="form-control" id="Password"
+                                placeholder="Password">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputAddress">Address</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                            <label for="Address">Address</label>
+                            <input type="text" class="form-control" formControlName="Address" id="Address" placeholder="1234 Main St">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputAddress2">Address 2</label>
-                            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                            <label for="Address2">Address 2</label>
+                            <input type="text" class="form-control" formControlName="Address2" id="Address2"
+                                placeholder="Apartment, studio, or floor">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputCity">City</label>
-                            <input type="text" class="form-control" id="inputCity">
+                            <input type="text" class="form-control" formControlName="inputCity" id="inputCity">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputState">State</label>
-                            <select id="inputState" class="form-control form-control">
-                                <option selected>Choose...</option>
-                                <option>...</option>
+                            <select id="inputState" formControlName="inputState" class="form-control form-control">
+                                    <option *ngFor="let state of states" [(ngValue)]="state.Id">{{state.name}}</option>
                             </select>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="inputZip">Zip</label>
-                            <input type="text" class="form-control" id="inputZip">
+                            <input type="text" formControlName="inputZip" class="form-control" id="inputZip">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-7">
-                            <label for="exampleFormControlTextarea1">Description</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                            <label for="Description">Description</label>
+                            <textarea class="form-control" formControlName="Description" id="Description" rows="2"></textarea>
                         </div>
 
                         <div class="form-inline col-md-5">
-                                <div class="form-group mb-2"> <label>Is registered before?</label></div>&nbsp;&nbsp;
-                                <div class="form-group mb-2"> <label for="registered" class="radio-inline">
-                                <input type="radio" name="isRegistered" id="registered" [value]="true" [(ngModel)]="vehicle.isRegistered">
-                                Yes
-                            </label></div>&nbsp;&nbsp;
-                            <div class="form-group mb-2">  <label for="notRegistered" class="radio-inline">
-                                <input type="radio" name="isRegistered" id="notRegistered" [value]="false" [(ngModel)]="vehicle.isRegistered">
-                                No
-                            </label></div>
-                       </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            <label class="form-check-label" for="gridCheck">
-                                Check me out
-                            </label>
+                            <div class="form-group mb-2"> <label>Is registered before?</label></div>&nbsp;&nbsp;
+                            <div class="form-group mb-2"> <label for="registered" class="radio-inline">
+                                    <input type="radio" name="isRegistered" formControlName="isRegistered" id="registered"
+                                        [value]="true" [(ngModel)]="isRegistered">
+                                    Yes
+                                </label></div>&nbsp;&nbsp;
+                            <div class="form-group mb-2"> <label for="notRegistered" class="radio-inline">
+                                    <input type="radio" name="isRegistered" id="notRegistered" formControlName="isRegistered"
+                                        [value]="false" [(ngModel)]="isRegistered">
+                                    No
+                                </label></div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Sign in</button>
+
+
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="subscription" formControlName="subscription">
+                                <label class="form-check-label" for="subscription">
+                                    Check me out
+                                </label>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group col-md-6">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Upload <mark style="background-color: #ced4da;">*</mark></span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" formControlName="file" class="custom-file-input" id="file">
+                                    <label class="custom-file-label" for="file">Choose file</label>                                  
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <button type="submit" [disabled]="!newUserForm.valid" class="btn btn-primary">Sign in</button>
                 </form>
             </div>
         </div>
 
 
     </div>
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
 
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -118,5 +145,15 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-    </div>
+    </div> -->
 </div>
+
+
+<p>
+        Form Value: {{ newUserForm.value | json }}
+      </p>
+      
+      
+      <p>
+        Form Status: {{ newUserForm.status }}
+      </p>

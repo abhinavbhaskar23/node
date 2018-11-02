@@ -2,8 +2,7 @@ import * as express from 'express';
 
 import CatCtrl from './controllers/cat';
 import UserCtrl from './controllers/user';
-import Cat from './models/cat';
-import User from './models/user';
+import StateCtrl from './controllers/state';
 
 export default function setRoutes(app) {
 
@@ -11,7 +10,7 @@ export default function setRoutes(app) {
 
   const catCtrl = new CatCtrl();
   const userCtrl = new UserCtrl();
-
+  const stateCtrl= new StateCtrl()
   // Cats
   router.route('/cats').get(catCtrl.getAll);
   router.route('/cats/count').get(catCtrl.count);
@@ -28,6 +27,10 @@ export default function setRoutes(app) {
   router.route('/user/:id').get(userCtrl.get);
   router.route('/user/:id').put(userCtrl.update);
   router.route('/user/:id').delete(userCtrl.delete);
+
+
+  //States
+  router.route('/state').get(stateCtrl.getAll);
 
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);

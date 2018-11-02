@@ -20,6 +20,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HeaderComponent } from './header/header.component';
 import { NewuserComponent } from './newuser/newuser.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StateService } from './services/state.service';
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -42,7 +43,6 @@ export function tokenGetter() {
     RoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -55,7 +55,8 @@ export function tokenGetter() {
     AuthGuardLogin,
     AuthGuardAdmin,
     CatService,
-    UserService
+    UserService,
+    StateService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
